@@ -1,4 +1,3 @@
-import "./App.css";
 import { createBrowserRouter as create, RouterProvider } from "react-router";
 import RootLayout from "./layout/RootLayout";
 import AdminLayout from "./layout/AdminLayout";

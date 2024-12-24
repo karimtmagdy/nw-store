@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  * {
+    @apply box-border p-0 m-0;
+  }
+  html {
+    @apply !scroll-smooth;
+  }
+  :root {
+    @apply font-semibold;
+  }
+  body {
+    @apply !bg-white !text-black dark:!text-white !text-base dark:!bg-black;
+  }
+}
