@@ -1,14 +1,10 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/(.*)" }],
   "routes": [
-    { "src": "/", "dest": "/" },
 
-    { "src": "/admin", "dest": "/" },
 
     { "src": "/admin/(.*)", "dest": "/admmin/$1" },
     { "src": "/(.*)", "dest": "/(.*)" },
-
-    { "src": "/api/(.*)", "dest": "/api/$1" },
 
     { "handle": "filesystem" },
 
