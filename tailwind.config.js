@@ -1,7 +1,8 @@
 // import colors from "tailwindcss/colors";
 import forms from "@tailwindcss/forms";
 import debugScreens from "tailwindcss-debug-screens";
-const debugScreen = process.env.NODE_ENV === 'development' ? debugScreens : null;
+const debugScreen =
+  process.env.NODE_ENV === "development" ? debugScreens : null;
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -125,5 +126,8 @@ export default {
       },
     },
   },
-  plugins: [forms({ strategy: "class" }), ...(debugScreen ? [debugScreens] : []),],
+  plugins: [
+    forms({ strategy: "class" }),
+    ...(debugScreen ? [debugScreens] : []),
+  ],
 };
