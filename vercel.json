@@ -1,13 +1,7 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/(.*)" }],
   "routes": [
-
-
-  
-    { "src": "/src/(.*)", "dest": "/src/(.*)" },
-
     { "handle": "filesystem" },
-
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
