@@ -1,0 +1,30 @@
+{
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
+    ],
+    "routes": [
+ 
+  
+ 
+      { "src": "/", "dest": "/" },
+      { "src": "/home", "dest": "/" },
+  
+ 
+      { "src": "/admin", "dest": "/" },
+ 
+  
+ 
+      { "src": "/admin/(.*)", "dest": "/" },
+  
+ 
+      { "src": "/api/(.*)", "dest": "/api/$1" },
+  
+ 
+      { "handle": "filesystem" },
+  
+ 
+      { "src": "/(.*)", "dest": "/index.html" }
+    ]
+  }
+  
+  
