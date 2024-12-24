@@ -125,5 +125,5 @@ export default {
       },
     },
   },
-  plugins: [forms({ strategy: "class" }), debugScreen ],
+  plugins: [forms({ strategy: "class" }), ...(debugScreen ? [debugScreens] : []),],
 };
