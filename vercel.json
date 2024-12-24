@@ -3,8 +3,8 @@
   "routes": [
 
 
-    { "src": "/admin/(.*)", "dest": "/admmin/$1" },
-    { "src": "/(.*)", "dest": "/(.*)" },
+  
+    { "src": "/src/(.*)", "dest": "/src/(.*)" },
 
     { "handle": "filesystem" },
 
