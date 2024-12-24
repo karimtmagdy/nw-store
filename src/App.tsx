@@ -1,11 +1,7 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import {
-  createBrowserRouter as create,
-  RouterProvider,
-  useNavigate,
-} from "react-router";
+import { createBrowserRouter as create, RouterProvider } from "react-router";
 import RootLayout from "./layout/RootLayout";
 import AdminLayout from "./layout/AdminLayout";
 import UserLayout from "./layout/UserLayout";
@@ -13,8 +9,6 @@ import AuthFormLayout from "./layout/AuthFormLayout";
 import AuthRegister from "./pages/authentication/AuthRegister";
 
 function App() {
-  const nav = useNavigate();
-
   const router = create([
     {
       path: "/",
