@@ -1,15 +1,15 @@
- 
-import { useNavigate } from 'react-router'
+import Navbar from "@/components/user/Navbar";
+import UserHeader from "@/components/user/UserHeader";
+import { Outlet } from "react-router";
 
 const UserLayout = () => {
-    const nav =useNavigate()
   return (
-    <div>
-      <h1>UserLayout</h1>
-      <p>user</p>
-      <button onClick={() => nav("/admin")}>admin</button>
-    </div>
-  )
-}
+    <>
+      <UserHeader />
+      <Navbar />
+      <Outlet />
+    </>
+  );
+};
 
-export default UserLayout
+export default UserLayout;

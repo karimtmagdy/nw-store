@@ -1,0 +1,15 @@
+// export const api_url = import.meta.env.VITE_API_URL;
+export const SIGNUPAPI = "/api/v1/auth/sign-up";
+export const SIGNINAPI = "/api/v1/auth/sign-in";
+export const SIGNOUTAPI = "/api/v1/auth/sign-out";
+export const RESETPASSWORDAPI = "/auth/reset-password";
+export const USERSAPI = "/users";
+export const CATEGORIESAPI = "/categories";
+export const PRODUCTSAPI = "/products";
+export const ORDERSAPI = "/orders";
+export const CARTAPI = "/cart";
+export const F2ASETUPAPI = "/auth/2fa/setup";
+export const F2ARESETAPI = "/auth/2fa/reset";
+export const F2AVERIFYAPI = "/auth/2fa/verify";
+// export const API='/api/v1/'
+// export const =''
