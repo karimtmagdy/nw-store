@@ -6,20 +6,23 @@ import UserLayout from "./layout/UserLayout";
 import AuthFormLayout from "./layout/AuthFormLayout";
 import AuthRegister from "./pages/authentication/AuthRegister";
 import AuthLogin from "./pages/authentication/AuthLogin";
+import ForbaddenPage from "./pages/error/ForbaddenPage";
+import NotFoundPage from "./pages/error/NotFoundPage";
 
 function App() {
   const router = create([
     {
-      path: "/",
+      path: "/*",
       element: <RootLayout />,
       children: [
+        { path: "*", element: <NotFoundPage /> },
+        { path: "/forbidden", element: <ForbaddenPage /> },
         {
           path: "/auth",
           element: <AuthFormLayout />,
           children: [
             { path: "/auth/sign-in", element: <AuthLogin /> },
-            { path: "/auth/sign-up", element: <div>register</div> },
-            { path: "/auth/register", element: <AuthRegister /> },
+            { path: "/auth/sign-up", element: <AuthRegister /> },
           ],
         },
         { path: "/", element: <UserLayout /> },
