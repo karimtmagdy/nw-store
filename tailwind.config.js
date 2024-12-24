@@ -1,6 +1,8 @@
 // import colors from "tailwindcss/colors";
 import forms from "@tailwindcss/forms";
-import debugScreen from "tailwindcss-debug-screens";
+import debugScreens from "tailwindcss-debug-screens";
+const debugScreen = process.env.NODE_ENV === 'development' ? debugScreens : null;
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: "class",
