@@ -6,8 +6,9 @@ import UserLayout from "./layout/UserLayout";
 import AuthFormLayout from "./layout/AuthFormLayout";
 import AuthRegister from "./pages/authentication/AuthRegister";
 import AuthLogin from "./pages/authentication/AuthLogin";
-import ForbaddenPage from "./pages/error/ForbaddenPage";
+import ForbiddenPage from "./pages/error/ForbiddenPage";
 import NotFoundPage from "./pages/error/NotFoundPage";
+import UnauthorizedPage from "./pages/error/UnauthorizedPage";
 
 function App() {
   const router = create([
@@ -16,7 +17,8 @@ function App() {
       element: <RootLayout />,
       children: [
         { path: "*", element: <NotFoundPage /> },
-        { path: "/forbidden", element: <ForbaddenPage /> },
+        { path: "/forbidden", element: <ForbiddenPage /> },
+        { path: "/unauthorized", element: <UnauthorizedPage /> },
         {
           path: "/auth",
           element: <AuthFormLayout />,
