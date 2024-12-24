@@ -5,6 +5,7 @@ import AdminLayout from "./layout/AdminLayout";
 import UserLayout from "./layout/UserLayout";
 import AuthFormLayout from "./layout/AuthFormLayout";
 import AuthRegister from "./pages/authentication/AuthRegister";
+import AuthLogin from "./pages/authentication/AuthLogin";
 
 function App() {
   const router = create([
@@ -16,7 +17,7 @@ function App() {
           path: "/auth",
           element: <AuthFormLayout />,
           children: [
-            { path: "/auth/sign-in", element: <div>login</div> },
+            { path: "/auth/sign-in", element: <AuthLogin /> },
             { path: "/auth/sign-up", element: <div>register</div> },
             { path: "/auth/register", element: <AuthRegister /> },
           ],
