@@ -3,11 +3,10 @@ import RootLayout from "./layout/RootLayout";
 import AdminLayout from "./layout/AdminLayout";
 import UserLayout from "./layout/UserLayout";
 import AuthFormLayout from "./layout/AuthFormLayout";
-import AuthRegister from "./pages/authentication/AuthRegister";
-import AuthLogin from "./pages/authentication/AuthLogin";
 import ForbiddenPage from "./pages/error/ForbiddenPage";
 import NotFoundPage from "./pages/error/NotFoundPage";
 import UnauthorizedPage from "./pages/error/UnauthorizedPage";
+import { sign_in, sign_up } from "@/routes/router";
 
 function App() {
   const router = create([
@@ -21,10 +20,7 @@ function App() {
         {
           path: "/auth",
           element: <AuthFormLayout />,
-          children: [
-            { path: "/auth/sign-in", element: <AuthLogin /> },
-            { path: "/auth/sign-up", element: <AuthRegister /> },
-          ],
+          children: [sign_up, sign_in],
         },
         { path: "/", element: <UserLayout /> },
         { path: "/admin", element: <AdminLayout /> },

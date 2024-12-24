@@ -7,6 +7,7 @@ export default defineConfig({
   base: "./",
   server: {
     port: 3000,
+    cors: true,
   },
   plugins: [react()],
   resolve: {
@@ -15,8 +16,19 @@ export default defineConfig({
       "@components": "/src/components",
       "@pages": "/src/pages",
       "@assets": "/src/assets",
+      "@hooks": "/src/hooks",
+      "@common": "/src/common",
+      "@features": "/src/features",
+      "@constants": "/src/constants",
+      "@services": "/src/services",
+      "@config": "/src/config",
+      "@context": "/src/context",
+      "@lib": "/src/lib",
+      "@types": "/src/types",
       "@utility": "/src/utility",
       "@app": "/src/app",
+      "@layout": "/src/layout",
+      "@routes": "/src/routes",
     },
   },
 });
