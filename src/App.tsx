@@ -18,7 +18,7 @@ function App() {
           children: [
             { path: "/auth/sign-in", element: <div>login</div> },
             { path: "/auth/sign-up", element: <div>register</div> },
-            { path: "/register", element: <AuthRegister /> },
+            { path: "/auth/register", element: <AuthRegister /> },
           ],
         },
         { path: "/", element: <UserLayout /> },
