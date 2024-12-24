@@ -1,3 +1,62 @@
+/* [scrollbar-width:thin] */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@300,400,401,500,600,700&f[]=montserrat@100,200,300,400,500,600,700,800&f[]=outfit@100,200,300,400,500,600,700,800,900&f[]=poppins@100,200,300,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@layer base {
+  input[type="text"]
+    input[type="password"]
+    input[type="email"]
+    input[type="number"]
+    input[type="url"]
+    input[type="date"]
+    input[type="datetime-local"]
+    input[type="month"]
+    input[type="week"]
+    input[type="time"]
+    input[type="search"]
+    input[type="tel"]
+    input[type="checkbox"]
+    input[type="radio"]
+    select
+    select[multiple]
+    textarea,
+  * {
+    @apply m-0 box-border border-zinc-200 p-0 dark:border-zinc-800 dark:text-zinc-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar]:w-2;
+  }
+  :root {
+    @apply font-inter text-base;
+  }
+  html {
+    @apply !scroll-smooth;
+  }
+  body {
+    @apply min-h-dvh !bg-white !text-base !text-black dark:!bg-black dark:!text-white;
+  }
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  h3 {
+    @apply text-xl font-bold;
+  }
+  h4 {
+    @apply text-lg font-bold;
+  }
+  h5 {
+    @apply text-base font-bold;
+  }
+  h6 {
+    @apply text-sm font-bold;
+  }
+  p {
+    @apply text-balance text-base text-zinc-600;
+  }
+  small {
+    @apply text-xxs;
+  }
+}
+/*bg-gradient-to-tr from-primary-600 via-accent-500 from-30% to-70% via-40% to-danger-600 bg-clip-text tracking-widest text-transparent*/
