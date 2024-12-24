@@ -1,12 +1,16 @@
-import { useState } from "react";
+ 
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { createBrowserRouter as create, RouterProvider, useNavigate } from "react-router";
+import {
+  createBrowserRouter as create,
+  RouterProvider,
+  useNavigate,
+} from "react-router";
 
 function App() {
-const nav =useNavigate()
-  const [count, setCount] = useState(0);
+  const nav = useNavigate();
+
   const router = create([
     {
       path: "/",
@@ -34,12 +38,7 @@ const nav =useNavigate()
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <button onClick={() => nav('/admin')}>
-          count is {count}
-        </button>
+        <button onClick={() => nav("/admin")}>admin</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
