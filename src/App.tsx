@@ -12,7 +12,7 @@ import NotFoundPage from "./pages/error/NotFoundPage";
 function App() {
   const router = create([
     {
-      path: "/*",
+      path: "/",
       element: <RootLayout />,
       children: [
         { path: "*", element: <NotFoundPage /> },
