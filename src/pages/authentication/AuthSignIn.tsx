@@ -7,9 +7,9 @@ import { useNavigate, useOutletContext } from "react-router";
 const AuthSignIn = () => {
   const nav = useNavigate();
   const { title }: { title: string } = useOutletContext();
-  const { signIn ,user} = useAuth();
- console.log(user)
- console.log(user?.role)
+  const { signIn, user } = useAuth();
+  console.log(user);
+  console.log(user?.role);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,24 +17,20 @@ const AuthSignIn = () => {
     e.preventDefault();
 
     try {
-      if(!email || !password) return setError("All fields are required");
-      if(signIn){
+      if (!email || !password) return setError("All fields are required");
+      if (signIn) {
         signIn(email, password);
-
       }
       console.log("Logged in successfully!");
-       
-        nav("/");
- 
+
+      nav("/");
     } catch (error: any) {
       setError(
         error.response?.data?.message || "Login failed. Please try again.",
       );
     }
   };
-  if (!user) {
-    return <div>يرجى تسجيل الدخول لعرض الملف الشخصي</div>;
-  }
+
   return (
     <Form className="space-y-4" onSubmit={handleSubmit}>
       <h1 className="text-center text-2xl">{title}</h1>
