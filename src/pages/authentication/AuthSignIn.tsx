@@ -32,6 +32,9 @@ const AuthSignIn = () => {
       );
     }
   };
+  if (!user) {
+    return <div>يرجى تسجيل الدخول لعرض الملف الشخصي</div>;
+  }
   return (
     <Form className="space-y-4" onSubmit={handleSubmit}>
       <h1 className="text-center text-2xl">{title}</h1>
