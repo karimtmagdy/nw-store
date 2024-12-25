@@ -100,6 +100,16 @@ export default {
           800: "#1f2937",
           900: "#111827",
         },
+        // secondary: {
+        //   DEFAULT: colors.neutral[200],
+        //   dark: colors.neutral[900],
+        //   border: colors.neutral[300],
+        //   ["dark-border"]: colors.neutral[600],
+        //   text: colors.neutral[500],
+        //   ["dark-text"]: colors.neutral[200],
+        //   hover: colors.neutral[400],
+        //   ["dark-hover"]: colors.neutral[800],
+        // },
       },
       fontSize: {
         xxs: "0.625rem",

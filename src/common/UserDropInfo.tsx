@@ -1,9 +1,9 @@
 import { CircleUser, Settings, ShieldCheck } from "@/assets/icon/icons";
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "@/context/AuthContext";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import UserInfo from "./UserInfo";
-// import AuthLogout from "@/pages/authentication/AuthLogout";
+import AuthSignOut from "@/pages/authentication/AuthSignOut";
 
 // import Button from "../ui/Button";
 
@@ -14,7 +14,7 @@ const menu = [
 ];
 const UserDropInfo = () => {
   const nav = useNavigate();
-  const { user } = useUser();
+  const { user } = useAuth();
   const { role, username, photo_avatar: photo } = user || {};
   const [open, setOpen] = useState(false);
   const [check, setCheck] = useState(false);
@@ -57,7 +57,7 @@ const UserDropInfo = () => {
                   </li>
                 ))}
               </ul>
-              {/* <AuthLogout /> */}
+              <AuthSignOut />
             </div>
           )}
         </>

@@ -14,15 +14,26 @@ If you are developing a production application, we recommend updating the config
 - Configure the top-level `parserOptions` property like this:
 
 ```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+export const asyncHandler = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
+"src": "/api/auth/(.*)",
+      "dest": "api/routes/index.js"
+
+      "src": "/api/categories/(.*)",
+      "dest": "api/routes/index.js"
+
+// GET /api/categories/:id
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  // Logic to get a specific category by id
+  res.json({ message: `Get category with id ${id}` });
+});
+
+      app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -30,21 +41,27 @@ export default tseslint.config({
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
 ```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+"routes": [
+    { "src": "/api/categories", "dest": "api/index.js" },
+    { "src": "/api/categories/(.*)", "dest": "api/index.js" },
+    { "src": "/api/auth/sign-in", "dest": "api/index.js" },
+    { "src": "/api/auth/sign-up", "dest": "api/index.js" },
+    { "src": "/api/auth/sign-out", "dest": "api/index.js" },
+    { "src": "/api/auth/forgot-password", "dest": "api/index.js" },
+    { "src": "/api/brands", "dest": "api/index.js" },
+    { "src": "/api/brands/(.*)", "dest": "api/index.js" },
+    { "src": "/api/products", "dest": "api/index.js" },
+    { "src": "/api/products/(.*)", "dest": "api/index.js" },
+    { "src": "/api/sub-categories", "dest": "api/index.js" },
+    { "src": "/api/sub-categories/(.*)", "dest": "api/index.js" },
+    { "src": "/api/categories/(.*)/sub-categories", "dest": "api/index.js" },
+    { "src": "/api/users", "dest": "api/index.js" },
+    { "src": "/api/users/(.*)", "dest": "api/index.js" },
+    { "src": "/api/cart", "dest": "api/index.js" },
+    { "src": "/api/cart/(.*)", "dest": "api/index.js" },
+    { "src": "/api/orders", "dest": "api/index.js" },
+    { "src": "/api/orders/(.*)", "dest": "api/index.js" },
+    { "src": "/api/payment", "dest": "api/index.js" },
+    { "src": "/api/(.*)", "dest": "api/index.js" }
+  ]
 ```

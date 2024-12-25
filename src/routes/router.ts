@@ -1,19 +1,19 @@
 export const sign_up = {
   path: "sign-up",
   lazy: async () => {
-    const { default: AuthRegister } = await import(
-      "@/pages/authentication/AuthRegister"
+    const { default: AuthSignUp } = await import(
+      "@/pages/authentication/AuthSignUp"
     );
-    return { Component: AuthRegister };
+    return { Component: AuthSignUp };
   },
 };
 export const sign_in = {
   path: "sign-in",
   lazy: async () => {
-    const { default: AuthLogin } = await import(
-      "@/pages/authentication/AuthLogin"
+    const { default: AuthSignIn } = await import(
+      "@/pages/authentication/AuthSignIn"
     );
-    return { Component: AuthLogin };
+    return { Component: AuthSignIn };
   },
 };
 // export const overview = {

@@ -5,14 +5,14 @@ import "@/assets/css/app.css";
 import "@/assets/css/index.css";
 import App from "./App.tsx";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { UserProvider } from "@/context/UserContext";
+import { AuthProvider } from "@/context/AuthContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <UserProvider>
+    <AuthProvider>
       <ThemeProvider>
         <App />
       </ThemeProvider>
-    </UserProvider>
+    </AuthProvider>
   </StrictMode>,
 );

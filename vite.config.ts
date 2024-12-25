@@ -4,10 +4,24 @@ import react from "@vitejs/plugin-react-swc";
 // https://vite.dev/config/
 export default defineConfig({
   root: ".",
-  base: "./",
+  // base: "./",
   server: {
     port: 3000,
     cors: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      //   authorization: `Bearer ${Cookies.get("token")}`,
+      // cookie: `token=${Cookies.get("token")}`,
+    },
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:8000",
+    //     changeOrigin: true,
+    //     secure: false,
+    //     rewrite: (path) => path.replace(/^\/api/, ""),
+    //   },
+    // },
   },
   plugins: [react()],
   resolve: {

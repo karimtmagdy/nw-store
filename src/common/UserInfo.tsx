@@ -1,8 +1,8 @@
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "@/context/AuthContext";
 // import OnOff from "@/common/OnOff";
 
 const UserInfo = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
   const {
     display_name,
     email,

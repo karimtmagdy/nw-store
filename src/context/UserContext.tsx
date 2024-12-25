@@ -1,85 +1,134 @@
-// import { api } from "@/config/axiosConfig";
-import axios from "axios";
 import {
   createContext,
   PropsWithChildren,
   useContext,
-  useLayoutEffect,
+  useEffect,
   useState,
 } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+ import { SIGNINAPI, SIGNOUTAPI } from "@/services/api";
+type Gender = "male" | "female";
+type Role = "user" | "admin" | "super-admin" | "moderator" | "manager";
+export type IUserType = {
+  exp: number;
+  _id?: string;
+  username?: string;
+  email: string;
+  password: string;
+  display_name?: string;
+  gender?: Gender;
+  phone_number?: string;
+  confirm_password: string;
+  role?: Role;
+  active?: boolean;
+  slug?: string;
+  status?: "online" | "offline";
+  joinedAt?: string;
+  photo_avatar?: { url: string };
+  updatedAt?: string;
 
-import { removeCookie, setCookie } from "@/utility/cookie";
-import { SIGNINAPI, SIGNOUTAPI, SIGNUPAPI } from "@/services/api";
-import { AuthContextType, IUserType } from "@/types/IUserType";
+  remember_me?: boolean;
+  [key: string]: any;
+};
+export type AuthContextType = {
+  user?: IUserType | null;
+  signIn?: (email: string, password: string) => Promise<void>;
+  signOut?: () => void;
+  isAuthenticated: boolean;
+  decodeToken: () => IUserType | null; // إضافة وظيفة فك تشفير التوكن
+};
 
-export const UserContext = createContext<AuthContextType | undefined>(
-  undefined,
-);
-export const UserProvider = ({ children }: PropsWithChildren) => {
-  const [user, setUser] = useState(null);
+export const AuthContext = createContext<AuthContextType | null>(null);
+
+export const AuthProvider = ({ children }: PropsWithChildren) => {
+  const [user, setUser] = useState<IUserType | null>(null);
   const [token, setToken] = useState<string | null>(null);
-
-  useLayoutEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      setToken(storedToken);
+   
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token") || Cookies.get("token");
+    if (storedToken) {
+      const decodedUser = decodeToken(storedToken);
+      if (decodedUser && !isTokenExpired(decodedUser)) {
+        setUser(decodedUser);
+        setToken(storedToken);
+       } else {
+        signOut();
+      }
     }
   }, []);
 
-  const register = async (data: IUserType) => {
-    const response = await axios.post(SIGNUPAPI, data);
-    const { token, user } = response.data;
-    // تخزين التوكن والبيانات
-    setCookie("token", token, { secure: true, sameSite: "strict" });
-    sessionStorage.setItem("user", JSON.stringify(user));
-    sessionStorage.setItem("token", token);
-    // setTokenApi(token);
-    setUser(user);
-    setToken(token);
-  };
-  const login = async (data: IUserType) => {
-    const response = await axios.post(SIGNINAPI, data);
-    const { token, user } = response.data;
-    // تخزين التوكن والبيانات
-    setCookie("token", token, {
-      secure: true,
-      sameSite: "strict",
-      expires: 7 * 24 * 60 * 60,
-    });
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
-    // setTokenApi(token);
-    setUser(user);
-    setToken(token);
-  };
-  const logout = async () => {
-    const response = await axios.post(SIGNOUTAPI, {});
-    if (response.status === 200) {
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      removeCookie("token");
-      // removeTokenApi()
-      setUser(null);
-      setToken(null);
+  const decodeToken = (tokenToDecode: string): IUserType | null => {
+    try {
+      return jwtDecode<IUserType>(tokenToDecode);
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
     }
   };
-  return (
-    <UserContext.Provider
-      value={{ user, token, setToken, register, login, logout }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+
+  const isTokenExpired = (decodedToken: IUserType) => {
+    const currentTime = Date.now() / 1000;
+    return decodedToken.exp < currentTime;
+  };
+
+  const signIn = async (email: string, password: string) => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/v1/auth/sign-in', { email, password });
+      const { token } = response.data;
+
+      const decodedUser = decodeToken(token);
+      if (!decodedUser || isTokenExpired(decodedUser)) {
+        console.error("Invalid or expired token");
+        return;
+      }
+
+      setUser(decodedUser);
+      setToken(token);
+      localStorage.setItem("token", token);
+      Cookies.set("token", token, { expires: 7 });
+
+     } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      if (token) {
+        await axios.post(SIGNOUTAPI, {}, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem("token");
+      Cookies.remove("token");
+     }
+  };
+
+ 
+
+  const value = {
+    user,
+    isAuthenticated: !!user,
+    signIn,
+    signOut,
+    decodeToken: () => token ? decodeToken(token) : null,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useUser = () => {
-  const context = useContext(UserContext);
+export const useAuth = (): AuthContextType => {
+  const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useUser must be used within an UserProvider");
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
 
- 

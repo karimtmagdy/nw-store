@@ -1,10 +1,10 @@
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "@/context/AuthContext";
 import { House, Shield } from "@/assets/icon/icons";
 import { useNavigate } from "react-router";
 
 const SwitchAdmin = () => {
   const nav = useNavigate();
-  const { user } = useUser();
+  const { user } = useAuth();
   return (
     <>
       {user?.role === "admin" && location.pathname.includes("admin") ? (

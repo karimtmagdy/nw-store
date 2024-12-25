@@ -1,9 +1,9 @@
 /* [scrollbar-width:thin] */
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@300,400,401,500,600,700&f[]=montserrat@100,200,300,400,500,600,700,800&f[]=outfit@100,200,300,400,500,600,700,800,900&f[]=poppins@100,200,300,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://api.fontshare.com/v2/css?f[]=general-sans@300,400,401,500,600,700&f[]=montserrat@100,200,300,400,500,600,700,800&f[]=outfit@100,200,300,400,500,600,700,800,900&f[]=poppins@100,200,300,400,500,600,700,800,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @layer base {
   input[type="text"]
     input[type="password"]
