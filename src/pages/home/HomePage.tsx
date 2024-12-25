@@ -12,7 +12,7 @@ const HomePage = () => {
       <h1>HomePage</h1>
       <h1>Slider</h1>
       <p className="w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow">
-        {user.username}
+        {user.username} and {user.display_name}
       </p>
     </div>
   );
