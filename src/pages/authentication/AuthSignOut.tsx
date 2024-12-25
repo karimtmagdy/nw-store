@@ -7,7 +7,7 @@ const AuthSignOut = () => {
   const nav = useNavigate();
   const handleOut = () => {
     nav("/" );
-  signOut();
+ if(signOut) signOut();
   };
   return (
     <button
